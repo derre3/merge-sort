@@ -6,28 +6,15 @@ function mergeSort(arr) {
 
 function merge(leftArr, rightArr) {
   let merged = [];
-  let i = 0;
-  let j = 0;
 
-  while (leftArr.length > i && rightArr.length > j) {
-    if (leftArr[i] < rightArr[j]) {
-      merged.push(leftArr[i]);
-      i++;
+  while (leftArr.length && rightArr.length) {
+    if (leftArr[0] < rightArr[0]) {
+      merged.push(leftArr.shift());
     } else {
-      merged.push(rightArr[j]);
-      j++;
+      merged.push(rightArr.shift());
     }
   }
-
-  while (i < leftArr.length) {
-    merged.push(leftArr[i]);
-    i++;
-  }
-  while (j < rightArr.length) {
-    merged.push(rightArr[j]);
-    j++;
-  }
-  return merged;
+  return merged.concat(leftArr).concat(rightArr);
 }
 
 console.log(mergeSort([8, 2, 6, 5, 7, 1, 4, 3]));
